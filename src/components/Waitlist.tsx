@@ -64,70 +64,55 @@ export default function Waitlist() {
   }
 
   return (
-    <div id="waitlist" className="py-24 glass-effect">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative animate-float">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl" />
-            <div className="relative z-10 glass-effect p-6 rounded-2xl border border-purple-500/20">
-              <div className="bg-gray-900/80 rounded-xl p-4 mb-4">
-                <div className="flex items-center space-x-3 mb-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full" />
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                  <div className="w-3 h-3 bg-green-500 rounded-full" />
-                </div>
-                <div className="space-y-3">
-                  <div className="bg-purple-900/30 p-3 rounded-lg">
-                    <p className="text-purple-300">🎉 Hey Fitness Rockstar!</p>
-                  </div>
-                  <div className="glass-effect p-3 rounded-lg">
-                    <p className="text-gray-400">Your spot in the future of fitness is waiting!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div id="waitlist" className="bg-[#1A1A1A] py-16 sm:py-24">
+      <div className="mx-auto max-w-xl text-center px-4"> {/* Adjusted max-width and added padding */}
+        
+        <h2 className="text-3xl lg:text-4xl font-light text-gray-100 tracking-tight mb-4">
+          Be Among the First.
+        </h2>
+        <p className="text-lg text-gray-300 mb-8">
+          Join the waitlist for Aura AI and be a pioneer in the new era of intelligent fitness.
+        </p>
 
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Be Part of Something Epic!
-            </h2>
-            <p className="text-gray-400">
-              Jump on our waitlist and be the first to experience the future of fitness. Early birds get exclusive perks! 🎁
-            </p>
-
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-300">Email Address</FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="email"
-                          placeholder="your.email@example.com"
-                          {...field}
-                          className="bg-gray-800/50 border-purple-500/30 text-white placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500"
-                          disabled={isLoading}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-red-400" />
-                    </FormItem>
-                  )}
-                />
-                <Button 
-                  type="submit" 
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold transition-all"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Submitting..." : "Join Waitlist"}
-                </Button>
-              </form>
-            </Form>
-          </div>
-        </div>
+        {/* Removed the left-side graphic/float animation div entirely */}
+        {/* The form will now be centered directly under the text */}
+        
+        {/* The space-y-6 and other layout classes from the previous right-side div are now applied to the form container if needed, or handled by the new centered layout */}
+        <Form {...form}>
+          <form 
+            onSubmit={form.handleSubmit(onSubmit)} 
+            className="space-y-6 max-w-md mx-auto" // Added max-w-md and mx-auto for form itself
+          >
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  {/* FormLabel can be visually hidden if design is very minimalist, or styled */}
+                  {/* <FormLabel className="sr-only">Email Address</FormLabel>  */}
+                  <FormControl>
+                    <Input 
+                      type="email"
+                      placeholder="Enter your email address"
+                      {...field}
+                      className="bg-gray-800 border-gray-700 text-gray-100 focus:ring-blue-500 focus:border-blue-500 placeholder:text-gray-500 rounded-md w-full py-3 px-4" // Adjusted styling
+                      disabled={isLoading}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-400 text-sm mt-1 text-left" /> {/* Ensure visibility and alignment */}
+                </FormItem>
+              )}
+            />
+            <Button 
+              type="submit" 
+              size="lg" // Consistent with Hero CTA
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3 transition-transform hover:scale-105" // Consistent with Hero CTA
+              disabled={isLoading}
+            >
+              {isLoading ? "Processing..." : "Join Waitlist"}
+            </Button>
+          </form>
+        </Form>
       </div>
     </div>
   );
