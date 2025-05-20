@@ -1,5 +1,7 @@
 import React from 'react';
 import { ArrowRight, Sparkles, Activity } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export default function Hero() {
   return (
@@ -11,10 +13,10 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1 text-center md:text-left">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-900/30 border border-purple-500/20 mb-8 animate-float">
+              <Badge variant="outline" className="bg-purple-900/30 border-purple-500/20 text-purple-200 py-2 px-4 mb-8 animate-float">
                 <Activity className="w-4 h-4 text-purple-400 mr-2" />
-                <span className="text-purple-200 text-sm">Beta Access Soon</span>
-              </div>
+                Beta Access Soon
+              </Badge>
               
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gradient leading-tight">
                 AI-Powered Fitness Revolution
@@ -25,22 +27,22 @@ export default function Hero() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <button 
+                <Button 
+                  size="lg"
                   onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="group px-8 py-4 bg-transparent relative neon-border rounded-xl overflow-hidden transition-all hover:scale-105"
+                  className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold transition-all hover:scale-105"
                 >
-                  <div className="absolute inset-0 gradient-shift opacity-80 group-hover:opacity-100 transition-opacity" />
-                  <span className="relative flex items-center justify-center text-white font-semibold">
-                    Join Waitlist <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </button>
+                  Join Waitlist <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
                 
-                <button 
+                <Button 
+                  size="lg"
+                  variant="outline"
                   onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-purple-950/50 hover:bg-purple-900/50 border border-purple-500/20 hover:border-purple-500/40 rounded-xl font-semibold transition-all text-purple-300"
+                  className="bg-purple-950/50 hover:bg-purple-900/50 border-purple-500/30 hover:border-purple-500/50 text-purple-300 hover:text-purple-200 font-semibold transition-all"
                 >
                   Explore Features
-                </button>
+                </Button>
               </div>
             </div>
 
