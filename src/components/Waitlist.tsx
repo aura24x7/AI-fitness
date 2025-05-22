@@ -13,8 +13,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast"; // Corrected import based on shadcn add toast
-import { subscribeEmail, SubscribeResponse } from "@/api/subscribe"; // Assuming subscribe.ts is in @/api
+import { useToast } from "@/hooks/use-toast";
+import { subscribeEmail, SubscribeResponse } from "@/api/subscribe";
 
 const FormSchema = z.object({
   email: z.string().email({
@@ -24,7 +24,7 @@ const FormSchema = z.object({
 
 export default function Waitlist() {
   const [isLoading, setIsLoading] = React.useState(false);
-  const { toast } = useToast(); // Correct hook usage
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -34,25 +34,25 @@ export default function Waitlist() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     setIsLoading(true);
-    console.log("Waitlist submission:", data);
+    // console.log("Waitlist submission:", data); // Keep for debugging if needed
 
     try {
       const response: SubscribeResponse = await subscribeEmail(data.email);
       if (response.success) {
         toast({
           title: "Success!",
-          description: response.message || "Successfully subscribed! Check your inbox.",
+          description: response.message || "Successfully subscribed! We'll keep you updated.",
         });
-        form.reset(); // Reset form on success
+        form.reset();
       } else {
         toast({
           variant: "destructive",
-          title: "Error",
-          description: response.message || "Subscription failed. Please try again.",
+          title: "Subscription Failed",
+          description: response.message || "Could not subscribe. Please try again later.",
         });
       }
     } catch (error) {
-      console.error("Subscription error:", error);
+      // console.error("Subscription error:", error); // Keep for debugging
       toast({
         variant: "destructive",
         title: "Error",
@@ -64,70 +64,51 @@ export default function Waitlist() {
   }
 
   return (
-    <div id="waitlist" className="py-24 glass-effect">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative animate-float">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl" />
-            <div className="relative z-10 glass-effect p-6 rounded-2xl border border-purple-500/20">
-              <div className="bg-gray-900/80 rounded-xl p-4 mb-4">
-                <div className="flex items-center space-x-3 mb-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full" />
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                  <div className="w-3 h-3 bg-green-500 rounded-full" />
-                </div>
-                <div className="space-y-3">
-                  <div className="bg-purple-900/30 p-3 rounded-lg">
-                    <p className="text-purple-300">🎉 Hey Fitness Rockstar!</p>
-                  </div>
-                  <div className="glass-effect p-3 rounded-lg">
-                    <p className="text-gray-400">Your spot in the future of fitness is waiting!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div id="waitlist" className="py-20 md:py-24"> {/* Consistent padding, removed glass-effect */}
+      <div className="container mx-auto px-6">
+        {/* Changed to a single-column, centered layout for the form */}
+        <div className="max-w-xl mx-auto text-center"> {/* Adjusted max-width and centering */}
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Be the First to Know
+          </h2>
+          <p className="text-lg text-muted-foreground mb-10">
+            Sign up to receive updates, early access invitations, and exclusive news about our 
+            AI multi-agent health platform.
+          </p>
 
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Be Part of Something Epic!
-            </h2>
-            <p className="text-gray-400">
-              Jump on our waitlist and be the first to experience the future of fitness. Early birds get exclusive perks! 🎁
-            </p>
-
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-gray-300">Email Address</FormLabel>
-                      <FormControl>
-                        <Input 
-                          type="email"
-                          placeholder="your.email@example.com"
-                          {...field}
-                          className="bg-gray-800/50 border-purple-500/30 text-white placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500"
-                          disabled={isLoading}
-                        />
-                      </FormControl>
-                      <FormMessage className="text-red-400" />
-                    </FormItem>
-                  )}
-                />
-                <Button 
-                  type="submit" 
-                  className="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold transition-all"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Submitting..." : "Join Waitlist"}
-                </Button>
-              </form>
-            </Form>
-          </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left"> {/* text-left for form labels */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-muted-foreground">Email Address</FormLabel> {/* Updated text color */}
+                    <FormControl>
+                      <Input 
+                        type="email"
+                        placeholder="you@example.com" // Simplified placeholder
+                        {...field}
+                        // Removed old classes: "bg-gray-800/50 border-purple-500/30 text-white placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500"
+                        // Input now inherits global styles from index.css and ui/input.tsx
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-destructive" /> {/* Updated text color */}
+                  </FormItem>
+                )}
+              />
+              <Button 
+                type="submit" 
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-colors" // Updated button styling
+                disabled={isLoading}
+              >
+                {isLoading ? "Submitting..." : "Join Waitlist"}
+              </Button>
+            </form>
+          </Form>
         </div>
+        {/* Removed the entire decorative left pane div */}
       </div>
     </div>
   );

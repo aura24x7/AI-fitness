@@ -19,38 +19,38 @@ export default {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        border: "hsl(var(--border))", // Adjusted in index.css
+        input: "hsl(var(--input))", // Adjusted in index.css
+        ring: "hsl(var(--ring))", // Adjusted in index.css
+        background: "hsl(var(--background))", // e.g., #121212 or hsl(0, 0%, 7%)
+        foreground: "hsl(var(--foreground))", // e.g., #E0E0E0 or hsl(0, 0%, 88%)
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "hsl(var(--primary))", // e.g., a muted blue like hsl(210, 50%, 50%)
+          foreground: "hsl(var(--primary-foreground))", // Adjusted in index.css
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "hsl(var(--secondary))", // e.g., softer gray hsl(0, 0%, 40%)
+          foreground: "hsl(var(--secondary-foreground))", // Adjusted in index.css
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "hsl(var(--destructive))", // Adjusted in index.css
+          foreground: "hsl(var(--destructive-foreground))", // Adjusted in index.css
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "hsl(var(--muted))", // e.g., softer gray hsl(0, 0%, 25%)
+          foreground: "hsl(var(--muted-foreground))", // Adjusted in index.css
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(var(--accent))", // Adjusted in index.css (can be same as primary or a variation)
+          foreground: "hsl(var(--accent-foreground))", // Adjusted in index.css
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "hsl(var(--popover))", // Adjusted in index.css
+          foreground: "hsl(var(--popover-foreground))", // Adjusted in index.css
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "hsl(var(--card))", // Adjusted in index.css
+          foreground: "hsl(var(--card-foreground))", // Adjusted in index.css
         },
       },
       borderRadius: {
@@ -58,20 +58,27 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
+      // Removed accordion keyframes and animations as they are likely from a UI library (shadcn/ui)
+      // and should be kept if used by its components.
+      // If these were custom and part of the old "cyber" theme, they would be removed.
+      // For now, assuming they are from the UI library.
+      // keyframes: {
+      //   "accordion-down": {
+      //     from: { height: "0" },
+      //     to: { height: "var(--radix-accordion-content-height)" },
+      //   },
+      //   "accordion-up": {
+      //     from: { height: "var(--radix-accordion-content-height)" },
+      //     to: { height: "0" },
+      //   },
+      // },
+      // animation: {
+      //   "accordion-down": "accordion-down 0.2s ease-out",
+      //   "accordion-up": "accordion-up 0.2s ease-out",
+      // },
     },
   },
   plugins: [require("tailwindcss-animate")],
