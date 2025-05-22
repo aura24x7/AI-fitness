@@ -1,47 +1,59 @@
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
+    /* Dark theme (default) inspired by Google's design language */
+    --background: 0 0% 7%; /* Near-black: #121212 */
+    --foreground: 0 0% 88%; /* Light gray / Off-white: #E0E0E0 */
+    
+    --card: 0 0% 10%; /* Slightly lighter than background for cards: #1A1A1A */
+    --card-foreground: 0 0% 88%; /* Same as main foreground */
+    
+    --popover: 0 0% 12%; /* Popover background: #1F1F1F */
+    --popover-foreground: 0 0% 88%; /* Same as main foreground */
+    
+    --primary: 210 50% 50%; /* Muted blue: hsl(210, 50%, 50%) */
+    --primary-foreground: 0 0% 100%; /* White text on primary: #FFFFFF */
+    
+    --secondary: 0 0% 25%; /* Softer gray for secondary elements: hsl(0, 0%, 25%) - #404040 */
+    --secondary-foreground: 0 0% 88%; /* Light gray text on secondary */
+    
+    --muted: 0 0% 15%; /* Muted background: hsl(0, 0%, 15%) - #262626 */
+    --muted-foreground: 0 0% 60%; /* Muted foreground text: hsl(0, 0%, 60%) - #999999 */
+    
+    --accent: 210 50% 55%; /* Slightly brighter blue for accents, can be same as primary */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+    
+    --destructive: 0 70% 50%; /* A standard destructive red */
+    --destructive-foreground: 0 0% 100%; /* White text on destructive */
+    
+    --border: 0 0% 20%; /* Border color: hsl(0, 0%, 20%) - #333333 */
+    --input: 0 0% 20%; /* Input background, same as border */
+    --ring: 210 50% 50%; /* Ring color, same as primary for focus states */
+    
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
+    /* Explicitly defining .dark to be the same as :root for this theme.
+       If a light theme were needed, it would be defined here. */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 88%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 88%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 88%;
+    --primary: 210 50% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 25%;
+    --secondary-foreground: 0 0% 88%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 210 50% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 210 50% 50%;
   }
 }
 
@@ -55,106 +67,10 @@
   }
   
   body {
-    @apply bg-gray-900;
+    @apply bg-background text-foreground font-sans; /* Updated to use new theme variables and font */
   }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { 
-    box-shadow: 0 0 20px theme('colors.purple.500/30'),
-                0 0 60px theme('colors.pink.500/20'); 
-  }
-  50% { 
-    box-shadow: 0 0 40px theme('colors.purple.500/50'),
-                0 0 80px theme('colors.pink.500/30'); 
-  }
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes text-shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-@keyframes morph {
-  0%, 100% { border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; }
-  50% { border-radius: 30% 60% 70% 40%/50% 60% 30% 60%; }
-}
-
-.animate-morph {
-  animation: morph 8s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
-.gradient-shift {
-  background: linear-gradient(
-    45deg, 
-    theme('colors.purple.600'), 
-    theme('colors.pink.500'), 
-    theme('colors.purple.600')
-  );
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-.text-gradient {
-  background: linear-gradient(
-    to right,
-    theme('colors.purple.400'),
-    theme('colors.pink.400'),
-    theme('colors.purple.400')
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: text-shimmer 6s linear infinite;
-}
-
-.glass-effect {
-  backdrop-filter: blur(12px);
-  background: rgba(17, 24, 39, 0.7);
-}
-
-.neon-border {
-  position: relative;
-}
-
-.neon-border::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(45deg, theme('colors.purple.500'), theme('colors.pink.500'));
-  filter: blur(5px);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.neon-border:hover::after {
-  opacity: 1;
-}
-
-.cyber-grid {
-  background-image: 
-    linear-gradient(rgba(167, 139, 250, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(167, 139, 250, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
+/* Removed custom keyframes: float, pulse-glow, gradient-shift, text-shimmer, morph */
+/* Removed utility classes: .animate-morph, .animate-float, .animate-pulse-glow */
+/* Removed visual effect classes: .gradient-shift, .text-gradient, .glass-effect, .neon-border, .cyber-grid */
