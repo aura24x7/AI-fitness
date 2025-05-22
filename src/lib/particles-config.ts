@@ -1,6 +1,6 @@
-import type { ISourceOptions } from "tsparticles-slim";
+import type { IOptions } from "@tsparticles/engine"; // Updated import for v3 types
 
-export const particlesConfig: ISourceOptions = {
+export const particlesConfig: IOptions = { // Updated type to IOptions
   autoPlay: true,
   background: {
     color: {
